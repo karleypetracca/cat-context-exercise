@@ -6,16 +6,24 @@ import "./App.css";
 
 function App() {
 	const initialState = {
-		name: "Karley",
+		name: "kitty",
+		activity: "napping",
 	};
 
 	const reducer = (state, action) => {
-		const { name } = action;
+		const { name, activity } = action;
 		switch (action.type) {
 			case "CHANGE_NAME":
 				return {
 					...state,
 					name,
+					activity: state.activity,
+				};
+			case "CHANGE_ACTIVITY":
+				return {
+					...state,
+					name: state.name,
+					activity,
 				};
 			default:
 				return state;
@@ -25,7 +33,7 @@ function App() {
 	return (
 		<div className="App">
 			<StateProvider value={useReducer(reducer, initialState)}>
-				<h1> Hello World</h1>
+				<h1>Cat Reducer</h1>
 				<DemoComponent />
 			</StateProvider>
 		</div>
